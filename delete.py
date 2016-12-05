@@ -21,4 +21,7 @@ def lambda_handler(input, context):
         Payload=json.dumps(create)
     )
 
+    if 'FunctionError' in response:
+        raise Exception('[BadRequest] ' + response['Payload'].read())
+
     return "deleted"

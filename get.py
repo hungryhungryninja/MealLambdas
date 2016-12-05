@@ -65,5 +65,8 @@ def lambda_handler(input, context):
     if isinstance(read_response, list):
         for rec in read_response:
             parse_typed_struct(rec)
-    
+
+    if read_response is None:
+        raise Exception('[NotFound] The resource could not be found')
+
     return read_response
